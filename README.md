@@ -34,7 +34,7 @@ You can use those included in the existing Firefox extension, just rename 0.png 
 * Edit loadjs.php and tenhou.php with the URL where you will host this
 * Copy/upload loadjs.php, tenhou.php and serveimg.php to your server
 * Create an img/ directory writable by the PHP engine
-* Add tile visual ressources in the img/ directory
+* Add tile visual ressources in the img/ directory
 
 ## Usage
 
