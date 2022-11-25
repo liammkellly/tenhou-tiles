@@ -3,11 +3,16 @@
 > This replaces the tiles on the internet mahjong client Tenhou by custom design tiles.
 > The primary use is to play with western friendly tiles (ie. arab numerals and latin script).
 > It rewrites some code in the Tenhou client to use external resources instead of the standard ones.
+> If you don't want or don't know how to install this, you can try it here: http://tentiles.rf.gd
 
 ## Thanks
 
 Thanks to the creators of the existing Firefox extension.
 https://addons.mozilla.org/en-GB/firefox/addon/tenhou-ui-translator/
+
+## Disclaimer
+
+This is provided as-is. I'm not a professionnal programmer so it might very well not work for you. If it does, all the best, otherwise sorry but it is what it is.
 
 ## License
 
