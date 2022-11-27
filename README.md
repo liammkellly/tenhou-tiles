@@ -39,5 +39,5 @@ You can use those included in the existing Firefox extension, just rename 0.png 
 ## Usage
 
 * Browse to http://tenhou.net/3
-* Inject the following code (you can copy-paste it to the address bar):
+* Inject the following code (through the console or a bookmarklet):
 javascript:fetch('https://your-website.com/tenhou/tenhou.php').then((response) => response.text()).then((data) => document.write(data));
