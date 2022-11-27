@@ -15,7 +15,7 @@ WTFPL
 
 ## Prerequisites
 
-* Web server (can be any web hosting service)
+* Web server with Cross-Origin Resource Sharing (CORS) enabled
 * PHP engine with GdImage support
 * Tile graphic ressources
 
