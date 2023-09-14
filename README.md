@@ -3,7 +3,7 @@
 > This replaces the tiles on the internet mahjong client Tenhou by custom design tiles.
 > The primary use is to play with western friendly tiles (ie. arab numerals and latin script).
 > It rewrites some code in the Tenhou client to use external resources instead of the standard ones.
-> If you don't want to or don't know how to install this, you can try it here: https://tentiles.work.gd
+> You can run your own instance on your server or use this one: https://tentiles.work.gd
 
 ## Thanks
 
@@ -12,7 +12,7 @@ https://addons.mozilla.org/en-GB/firefox/addon/tenhou-ui-translator/
 
 ## Disclaimer
 
-This is provided as-is. I'm not a professionnal programmer so it might very well not work for you. If it does, all the best, otherwise sorry but it is what it is. You're very welcome to re-use and fix.
+This is provided as-is. It's relatively hacky so it might break, although it has worked well so far. If it continues, all the best, otherwise sorry but it is what it is. You're very welcome to re-use and fix.
 
 ## License
 
@@ -35,11 +35,12 @@ Alternatively, if you don't have a PHP engine with GD library, you can pre-rende
 
 ## Installation
 
-* Host the tile visual ressources on your web hosting. Note that it has to have CORS allowed or the ressources won't load on tenhou.net
-* Edit tentiles.js with the URL where you will host this (if using serveimg.php this should end in serveimg.php?img= ; otherwise this should point to the folder where you have all the ressources including the final /)
-* Copy the content of tenhou.js and paste it in the URL field of a bookmark in your browser
+* Host the tile visual ressources on your web hosting. Note that it has to have CORS allowed or the ressources won't load on tenhou.net (if you want to use the default tentiles.work.gd server, you can skip this)
+* Edit Tentiles.js with the URL where you will host this (if you want to use the default tentiles.work.gd server, you can skip this)
+* Add Tentiles.js to whatever Userscript manager you use (tested with https://github.com/quoid/userscripts on Mac and iOS)
 
 ## Usage
 
 * Browse to http://tenhou.net/3
-* Open the bookmark. Note: this is called a bookmarklet, your browser might require some specific settings to use it. Use your search engine of choice to learn more about bookmarklets usage.
+* Wait for the patching to happen
+* Start a test game to ensure all resources loaded as expected
