@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name         TenTiles
 // @version      0.1
+// @updateURL    https://raw.githubusercontent.com/liammkellly/tenhou-tiles/main/Tentiles.js
 // @description  Makes Tenhou.net UI easier on Western players
 // @author       Liam Kelly
 // @match        *://tenhou.net/3/
@@ -20,7 +21,8 @@ function injectPatch(tilesSwitch) {
                     t.replace("e.src=src;",
                         'fetch(src).then((responseSrc) => responseSrc.text()).then((dataSrc) => e.text=dataSrc' +
                         (tilesSwitch == 1 ? '.replace("cdn.tenhou.net/5/img/","\\" +  (' + varToReplace + ' == 0 ? \\"' + resourcesURL + '\\" : \\"cdn.tenhou.net/5/img/\\") + \\"")' : '') +
-                        '.replace("四","4")' + ');')
+                        '.replace("四","4")' +
+                        ');')
                 )
                 ).then();
 }
@@ -52,4 +54,3 @@ const loadingTimeout = setTimeout(() => {
         injectPatch();
     }, 2000);
 }, 10000);
-
