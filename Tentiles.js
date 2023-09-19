@@ -194,11 +194,19 @@
         function nodeCeption(node) {
             if (node.nodeType == 3) {
                 for (oneTranslation in exactTranslation) {
-                    node.nodeValue = node.nodeValue.replace(oneTranslation, exactTranslation[oneTranslation][tenSettings.translationLN]);
+                    if (exactTranslation[oneTranslation][tenSettings.translationLN] ) {
+                        node.nodeValue = node.nodeValue.replace(oneTranslation, exactTranslation[oneTranslation][tenSettings.translationLN]);
+                    } else {
+                        node.nodeValue = node.nodeValue.replace(oneTranslation, exactTranslation[oneTranslation]['DEFAULT']);
+                    }
                 }
 
                 for (oneTranslation in partialTranslation) {
-                    node.nodeValue = node.nodeValue.replace(oneTranslation, partialTranslation[oneTranslation][tenSettings.translationLN]);
+                    if (partialTranslation[oneTranslation][tenSettings.translationLN] ) {
+                        node.nodeValue = node.nodeValue.replace(oneTranslation, partialTranslation[oneTranslation][tenSettings.translationLN]);
+                    } else {
+                        node.nodeValue = node.nodeValue.replace(oneTranslation, partialTranslation[oneTranslation]['DEFAULT']);
+                    }
                 }
             } else {
                 node.childNodes.forEach(nodeCeption);
