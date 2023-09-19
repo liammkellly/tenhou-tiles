@@ -1,8 +1,8 @@
 # tenhou-tiles
 
-> This replaces the tiles on the internet mahjong client Tenhou by custom design tiles.
+> This replaces the tiles on the internet mahjong client Tenhou by custom design tiles and translates the user interface.
 > The primary use is to play with western friendly tiles (ie. arab numerals and latin script).
-> It rewrites some code in the Tenhou client to use external resources instead of the standard ones.
+> It rewrites some code in the Tenhou client to use external resources from an alternate server instead of the standard ones.
 > You can run your own instance on your server or use this one: https://tentiles.work.gd
 
 ## Thanks
@@ -33,9 +33,13 @@ The easiest setup is to use the serveimg.php script to resize on demand.
 you should include the base ressources named 000.png, 100.png, ..., 400.png, in a img/ folder. If the script is able to write in this folder it will save the resized ressources for future use, saving CPU.
 Alternatively, if you don't have a PHP engine with GD library, you can pre-render all the files. In that case the naming convention is viewwXXXYYY.png with XXX the base ressource (000, 1000, ..., 400) and YYY the width divided by 10.
 
+## About translation resources
+
+This userscript uses the translation from the existing Firefox extension repackaged as a json.
+
 ## Installation
 
-* Host the tile visual ressources on your web hosting. Note that it has to have CORS allowed or the ressources won't load on tenhou.net (if you want to use the default tentiles.work.gd server, you can skip this)
+* Host the tile and translation ressources on your web hosting. Note that it has to have CORS allowed or the ressources won't load on tenhou.net (if you want to use the default tentiles.work.gd server, you can skip this)
 * Edit Tentiles.js with the URL where you will host this (if you want to use the default tentiles.work.gd server, you can skip this)
 * Add Tentiles.js to whatever Userscript manager you use (tested with https://github.com/quoid/userscripts on Mac and iOS)
 
