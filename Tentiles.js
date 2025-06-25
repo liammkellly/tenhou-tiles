@@ -100,7 +100,7 @@
                         if (tenSettings.replaceTiles) {
                             document.write(
                                 t.replace("e.src=src;",
-                                    'fetch(src).then((responseSrc) => responseSrc.text()).then((dataSrc) => e.text=dataSrc.replace("cdn.tenhou.net/5/img/","\\" +  (' + varToReplace + ' == 0 ? \\"' + ressourcesURL + '\\" : \\"cdn.tenhou.net/5/img/\\") + \\""));')
+                                    'fetch(src).then((responseSrc) => responseSrc.text()).then((dataSrc) => e.text=dataSrc.replace("cdn.tenhou.net/5/img/","\\" +  (' + varToReplace + ' == 0 ? \\"' + tenSettings.ressourcesURL + '\\" : \\"cdn.tenhou.net/5/img/\\") + \\""));')
                             );
                         }
                         if (tenSettings.translateUI) {
