@@ -3,7 +3,7 @@
 > This replaces the tiles on the internet mahjong client Tenhou by custom design tiles and translates the user interface.
 > The primary use is to play with western friendly tiles (ie. arab numerals and latin script).
 > It rewrites some code in the Tenhou client to use external resources from an alternate server instead of the standard ones.
-> You can run your own instance on your server or use this one: https://tentiles.work.gd
+> You can run your own instance on your server or use this one: https://tentiles.7854.ovh
 
 ## Thanks
 
@@ -39,8 +39,8 @@ This userscript uses the translation from the existing Firefox extension repacka
 
 ## Installation
 
-* Host the tile and translation ressources on your web hosting. Note that it has to have CORS allowed or the ressources won't load on tenhou.net (if you want to use the default tentiles.work.gd server, you can skip this)
-* Edit Tentiles.js with the URL where you will host this (if you want to use the default tentiles.work.gd server, you can skip this)
+* Host the tile and translation ressources on your web hosting. Note that it has to have CORS allowed or the ressources won't load on tenhou.net. The php script serving images will attempt to set the proper headers, make sure the server allows. (If you want to use the default tentiles.7854.ovh server, you can skip this)
+* Edit Tentiles.js with the URL where you will host this. (If you want to use the default tentiles.7854.ovh server, you can skip this)
 * Add Tentiles.js to whatever Userscript manager you use (tested with https://github.com/quoid/userscripts on Mac and iOS)
 
 ## Usage
