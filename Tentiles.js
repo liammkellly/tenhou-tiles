@@ -100,7 +100,7 @@
                         if (tenSettings.replaceTiles) {
                             document.write(
                                 t.replace("e.src=src;",
-                                    'fetch(src).then((responseSrc) => responseSrc.text()).then((dataSrc) => e.text=dataSrc.replace("cdn.tenhou.net/5/img/","\\" +  (' + varToReplace + ' == 0 ? \\"' + 'tentiles.work.gd/serveimg.php?img=' + '\\" : \\"cdn.tenhou.net/5/img/\\") + \\""));')
+                                    'fetch(src).then((responseSrc) => responseSrc.text()).then((dataSrc) => e.text=dataSrc.replace("cdn.tenhou.net/5/img/","\\" +  (' + varToReplace + ' == 0 ? \\"' + ressourcesURL + '\\" : \\"cdn.tenhou.net/5/img/\\") + \\""));')
                             );
                         }
                         if (tenSettings.translateUI) {
@@ -123,9 +123,9 @@
     if (!tenSettings) {
         alert("The TenTiles userscript is being run for the first time. It will set default values, you can change them later using the TenTiles button on the splashpage.");
         tenSettings = {
-            "ressourcesURL": "tentiles.work.gd/serveimg.php?img=",
+            "ressourcesURL": "tentiles.7854.ovh/serveimg.php?img=",
             "replaceTiles": true,
-            "translationsURL": "https://tentiles.work.gd/translations.json",
+            "translationsURL": "https://tentiles.7854.ovh/translations.json",
             "translationLN": "ENG",
             "translateUI": true
         };
