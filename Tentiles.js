@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         TenTiles
-// @version      0.2
+// @version      0.3
 // @description  Makes Tenhou.net UI easier on Western players
 // @author       Liam Kelly
 // @updateURL    https://raw.githubusercontent.com/liammkellly/tenhou-tiles/main/Tentiles.js
