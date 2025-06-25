@@ -168,9 +168,6 @@
     // alert("updateTiles: " + tenSettings.replaceTiles + "\ntranslateUI: " + tenSettings.translateUI + "\nlanguage: " + tenSettings.translationLN);
 
     await GM.setValue('tenSettings', JSON.stringify(tenSettings));
-
-    let resourcesURL = tenSettings.ressourcesURL;
-
     let checkConnectivity;
     let Httpreq = new XMLHttpRequest();
     Httpreq.onreadystatechange = function () {
