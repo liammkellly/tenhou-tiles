@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         TenTiles
-// @version      0.3
+// @version      0.4
 // @description  Makes Tenhou.net UI easier on Western players
 // @author       Liam Kelly
 // @updateURL    https://raw.githubusercontent.com/liammkellly/tenhou-tiles/main/Tentiles.js
@@ -20,10 +20,13 @@
             'let transLanguage = document.getElementById("transLanguage").value;' +
             'let replaceTilesStatus = document.getElementById("replaceTilesBox").checked;' +
             'let updateTransStatus = document.getElementById("updateTrans").checked;' +
+            'let resourcesURLsetting = document.getElementById("resourcesURLsetting").value;' +
+            'let translationsURLsetting = document.getElementById("translationsURLsetting").value;' +
             'let newURL = "https://tenhou.net/3/#updateTiles=" + (replaceTilesStatus == true ? "1" : "0")' +
             '+ "updateTrans=" + (updateTransStatus == true ? "1" : "0")' +
-            '+ "transLanguage=" + transLanguage;' +
-            //'alert(newURL);' +
+            '+ "transLanguage=" + transLanguage' +
+            '+ "resourcesURLsetting=" + resourcesURLsetting + "_END_"' +
+            '+ "translationsURLsetting=" + translationsURLsetting + "_END_";' +
             'location.replace(newURL);' +
             'location.reload(true);' +
             '};';
@@ -36,13 +39,14 @@
         optionsWindow.style.position = "absolute";
         optionsWindow.style.fontSize = "1em";
         optionsWindow.style.position = "absolute";
-        optionsWindow.style.left = "30%";
-        optionsWindow.style.width = "40%";
-        optionsWindow.style.top = "40%";
+        optionsWindow.style.left = "5%";
+        optionsWindow.style.width = "60%";
+        optionsWindow.style.top = "5%";
         optionsWindow.style.textAlign = "center";
         optionsWindow.style.backgroundColor = "grey";
         optionsWindow.innerHTML = `TenTiles userscript options.<br />
-        Saving changes will refresh the page.<br /><br />
+        Saving changes will refresh the page.<br />
+        Click TenTiles button again to close.<br /><br />
         <table>
         <tr><td>Replace tiles</td><td><input type="checkbox" id="replaceTilesBox" ` + (tenSettings.replaceTiles == true ? "checked" : "") + `></td></tr>
         <tr><td>Translate UI</td><td><input type="checkbox" id="updateTrans"  ` + (tenSettings.translateUI == true ? "checked" : "") + `></td></tr>
@@ -55,6 +59,8 @@
         <option value="ES" ` + (tenSettings.translationLN == "ES" ? "selected" : "") + `>Spanish</option>
         <option value="POL" ` + (tenSettings.translationLN == "POL" ? "selected" : "") + `>Polish</option>
         <option value="RUS_DEFT" ` + (tenSettings.translationLN == "RUS_DEFT" ? "selected" : "") + `>Russian</option></select></td></tr>
+        <tr><td>Resources URL:</td><td><input type="text" id="resourcesURLsetting" value="` + tenSettings.ressourcesURL + `" /></td></td>
+        <tr><td>Translations URL:</td><td><input type="text" id="translationsURLsetting" value="` + tenSettings.translationsURL + `" /></input></td></td>
         </table>
         <button onclick="saveSettings()" ontouchstart="saveSettings()" value="Save settings">Save settings</button>`;
         document.body.appendChild(optionsWindow);
@@ -125,7 +131,7 @@
         tenSettings = {
             "ressourcesURL": "tentiles.7854.ovh/serveimg.php?img=",
             "replaceTiles": true,
-            "translationsURL": "https://tentiles.7854.ovh/translations.json",
+            "translationsURL": "tentiles.7854.ovh/servetranslations.php",
             "translationLN": "ENG",
             "translateUI": true
         };
@@ -165,7 +171,21 @@
         tenSettings.translationLN = matches[0][1];
     }
 
-    // alert("updateTiles: " + tenSettings.replaceTiles + "\ntranslateUI: " + tenSettings.translateUI + "\nlanguage: " + tenSettings.translationLN);
+    regex = /resourcesURLsetting=(.*)_END_translationsURLsetting/g;
+    matches = URL.matchAll(regex);
+    matches = Array.from(matches)
+
+    if (matches[0]) {
+        tenSettings.ressourcesURL = matches[0][1]
+    }
+
+    regex = /translationsURLsetting=(.*)_END_/g;
+    matches = URL.matchAll(regex);
+    matches = Array.from(matches)
+
+    if (matches[0]) {
+        tenSettings.translationsURL = matches[0][1]
+    }
 
     await GM.setValue('tenSettings', JSON.stringify(tenSettings));
     let checkConnectivity;
@@ -180,7 +200,7 @@
             }
         }
     }
-    Httpreq.open("GET", tenSettings.translationsURL, false);
+    Httpreq.open("GET", "https://" + tenSettings.translationsURL, false);
     Httpreq.send(null);
 
     if (checkConnectivity) {
@@ -191,7 +211,7 @@
         function nodeCeption(node) {
             if (node.nodeType == 3) {
                 for (oneTranslation in exactTranslation) {
-                    if (exactTranslation[oneTranslation][tenSettings.translationLN] ) {
+                    if (exactTranslation[oneTranslation][tenSettings.translationLN]) {
                         node.nodeValue = node.nodeValue.replace(oneTranslation, exactTranslation[oneTranslation][tenSettings.translationLN]);
                     } else {
                         node.nodeValue = node.nodeValue.replace(oneTranslation, exactTranslation[oneTranslation]['DEFAULT']);
@@ -199,7 +219,7 @@
                 }
 
                 for (oneTranslation in partialTranslation) {
-                    if (partialTranslation[oneTranslation][tenSettings.translationLN] ) {
+                    if (partialTranslation[oneTranslation][tenSettings.translationLN]) {
                         node.nodeValue = node.nodeValue.replace(oneTranslation, partialTranslation[oneTranslation][tenSettings.translationLN]);
                     } else {
                         node.nodeValue = node.nodeValue.replace(oneTranslation, partialTranslation[oneTranslation]['DEFAULT']);
